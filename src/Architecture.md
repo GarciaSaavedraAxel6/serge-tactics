@@ -50,4 +50,5 @@ Battle
 Grid
     Grid.getTile(x, y)
 Tile
+    Tile.moveCost
 Level
