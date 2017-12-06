@@ -51,4 +51,5 @@ Grid
     Grid.getTile(x, y)
 Tile
     Tile.moveCost
+    Tile.unit
 Level
