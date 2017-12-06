@@ -50,5 +50,4 @@ Battle
 Grid
     Grid.getTile(x, y)
 Tile
-Terrain?
 Level
