@@ -40,6 +40,7 @@ Menu
 
 Classes?
 Units
+    Unit.tile
 Items
 Input
 Images
@@ -53,3 +54,7 @@ Tile
     Tile.moveCost
     Tile.unit
 Level
+    Tiles
+    Unit List
+    Map Data
+    Grid
