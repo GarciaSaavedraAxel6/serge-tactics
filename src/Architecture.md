@@ -1,11 +1,11 @@
 States of the game:
 
-Pre-Menu
+Pre-Menu __Skeleton Completed__
     Major Contributions Splash
         Vue.JS
     SergeofBIBEK Splash
     Intro Movie?
-Title Screen
+Title Screen __Skeleton In Progress__
     Logged In
     Not Logged In
 Loading Screen

@@ -2,22 +2,11 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import App from './App';
-import Vuex from 'vuex';
-
-Vue.use(Vuex);
+import store from './Datastore'
 
 Vue.config.productionTip = false;
 
-const store = new Vuex.Store({
-  state: {
-    show: false 
-  },
-  mutations: {
-    toggle (state, payload) {
-      state.show = !state.show;
-    }
-  }
-});
+
 
 /* eslint-disable no-new */
 const app = new Vue({
@@ -25,4 +14,4 @@ const app = new Vue({
   store,
   template: '<App/>',
   components: { App }
-})
+});

@@ -1,35 +1,38 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <br />
-    <button @click="toggle">{{this.$store.state.show ? "Hide" : "Show" }}</button>
-    <HelloWorld v-if="this.$store.state.show" />
-  </div>
+	<div id="app">
+		<!--<img src="./assets/logo.png">-->
+		<PreMenu v-if="this.$store.state.globalState === 'Pre Menu'" />
+		<TitleScreen v-if="this.$store.state.globalState === 'Title Screen'" />
+		<button @click="toggle">{{this.$store.state.show ? "Hide" : "Show" }}</button>
+	</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import PreMenu from "./Components/PreMenu";
+import TitleScreen from "./Components/TitleScreen";
 
 export default {
-  name: 'app',
-  methods: {
-    toggle: function(event) {
-      this.$store.commit("toggle");
-    }
-  },
-  components: {
-    HelloWorld
-  }
+	name: 'app',
+	methods: {
+		toggle: function(event) {
+			this.$store.commit("toggle");
+		}
+	},
+	components: {
+		PreMenu,
+		TitleScreen
+	}
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+	.screen {
+		height: 100vh;
+		width: 100vw;
+		position: fixed;
+		top: 0;
+		left: 0;
+		background-color: #000;
+		color: #050;
+	}
 </style>

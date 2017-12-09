@@ -1,5 +1,5 @@
 class Unit {
-    constructor () {
-        
+    constructor (move) {
+        this.move = move;
     }
 }

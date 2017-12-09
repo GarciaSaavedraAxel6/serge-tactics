@@ -1,4 +1,4 @@
-class Grid {
+export class Grid {
     constructor (twoDArray) {
         this.tiles = twoDArray.map(row => {
             return row.map(tile => {
@@ -54,7 +54,7 @@ class Grid {
     }
 }
 
-class Tile {
+export class Tile {
     constructor (config) {
         this.x = config.x;
         this.y = config.y;
