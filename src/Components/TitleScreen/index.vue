@@ -20,14 +20,17 @@ export default {
 	methods: {
 		loadHandler: function(){
 			alert("Load Game");
+			//Move to Load Menu
 		},
 
 		newHandler: function() {
-			alert("New Game");
+			//Setup New Game
+			this.$store.commit({type: "setGlobalState", payload: "Game State"});
 		},
 
 		settingsHandler: function() {
 			alert("Settings");
+			//Move to Settings Menu
 		}
 	}
 }
@@ -46,6 +49,7 @@ export default {
 		padding: 10px;
 		border-radius: 10px;
 		border: 1px solid #050;
+		margin: 10px;
 	}
 
 	.menuItem:hover {

@@ -1,16 +1,16 @@
 States of the game:
 
-Pre-Menu __Skeleton Completed__
+Pre-Menu 876__Skeleton Completed__
     Major Contributions Splash
-        Vue.JS
-    SergeofBIBEK Splash
-    Intro Movie?
-Title Screen __Skeleton In Progress__
-    Logged In
-    Not Logged In
-Loading Screen
-Game
-    Story Scene
+        Vue.JS __Skeleton Completed__
+    SergeofBIBEK Splash __Skeleton Completed__
+    Intro Movie? `Not Started`
+Title Screen __Skeleton Completed__
+    Logged In `Not Started`
+    Not Logged In `Not Started`
+Loading Screen `Not Started`
+Game __Skeleton Completed__
+    Story Scene __Skeleton Completed__
         Animation
         Text
     World Map

@@ -1,31 +1,37 @@
 <template>
 	<div id="app">
-		<!--<img src="./assets/logo.png">-->
 		<PreMenu v-if="this.$store.state.globalState === 'Pre Menu'" />
 		<TitleScreen v-if="this.$store.state.globalState === 'Title Screen'" />
-		<button @click="toggle">{{this.$store.state.show ? "Hide" : "Show" }}</button>
+		<GameState v-if="this.$store.state.globalState ==='Game State'" />
+		
 	</div>
 </template>
 
 <script>
 import PreMenu from "./Components/PreMenu";
 import TitleScreen from "./Components/TitleScreen";
+import GameState from "./Components/GameState";
 
 export default {
 	name: 'app',
 	methods: {
-		toggle: function(event) {
-			this.$store.commit("toggle");
-		}
+		
 	},
 	components: {
 		PreMenu,
-		TitleScreen
+		TitleScreen,
+		GameState
 	}
 }
 </script>
 
 <style>
+* {
+	box-sizing: border-box;
+	-webkit-appearance: none;
+	margin: 0;
+	padding: 0;
+}
 	.screen {
 		height: 100vh;
 		width: 100vw;
