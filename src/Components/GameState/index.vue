@@ -15,7 +15,7 @@ export default {
 	name: "GameState",
 	data: function () {
 		return {
-			phase: "StoryScene",
+			phase: "Battle",
 		}
 	},
 	components: {

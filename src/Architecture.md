@@ -29,6 +29,8 @@ Game __Skeleton Completed__
         Enemy Phase
         End Phase
 Menu
+    Select Units
+    Unit Status
     Options
         Game Options
         Sound Options
