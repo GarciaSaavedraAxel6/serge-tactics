@@ -2,7 +2,7 @@
 	<div class="tile" :style="sizeAndPosition">
 		<!--background-->
 		<!--object-->
-		<!--unit-->
+		<div class="unit" v-if="tile.unit !== null">Hiya</div>
 		<!--coloring-->
 		<!--arrow-->
 	</div>
@@ -22,21 +22,26 @@ export default {
 	computed: {
 		sizeAndPosition: function() {
 			return {
-				height: `${this.size}px`,
-				width: `${this.size}px`,
-				left: `${this.size * this.tile.x}px`,
-				top: `${this.size * this.tile.y}px`,
+				height: `${this.$store.state.tileSize}px`,
+				width: `${this.$store.state.tileSize}px`,
+				left: `${this.$store.state.tileSize * this.tile.x}px`,
+				top: `${this.$store.state.tileSize * this.tile.y}px`,
 			}
 		}
 	}
 }
 </script>
 
-<style>
+<style scoped>
 	.tile {
 		border: 1px solid #000;
 		position: absolute;
 		background-color: #060;
 		margin: 0px;
+	}
+	.unit {
+		height: 100%;
+		width: 100%;
+		color: #00B;
 	}
 </style>

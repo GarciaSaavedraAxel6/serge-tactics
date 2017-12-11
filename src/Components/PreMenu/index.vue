@@ -24,7 +24,7 @@ export default {
 		advance: function() {
 			if (this.currentIndex === this.screens.length - 1) {
 				clearInterval(this.interval);
-				this.$store.commit({type: "setGlobalState", payload: "Title Screen"});
+				this.$store.commit("setGlobalState", "Title Screen");
 			}
 			else {
 				this.currentIndex++;

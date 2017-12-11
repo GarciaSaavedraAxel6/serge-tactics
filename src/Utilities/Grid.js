@@ -1,8 +1,11 @@
 export class Grid {
     constructor (twoDArray) {
-        this.tiles = twoDArray.map(row => {
-            return row.map(tile => {
-                return new Tile(tile);
+        this.flatTiles = [];
+        this.tiles = twoDArray.map((row, y) => {
+            return row.map((tile, x) => {
+                let newTile = new Tile(x, y, tile);
+                this.flatTiles.push(newTile);
+                return newTile;
             });
         });
     }
@@ -17,29 +20,43 @@ export class Grid {
     }
 
     getMoveTiles(startx, starty, maxMove) {
+        const moveTiles = (tile, move) => {
+            let remaining = move - (tile === startTile ? 0 : tile.moveCost);
+            
+            if (tile.canMoveTo() && remaining >= 0 || tile === startTile) {
+                return [tile].concat(this.getNeighbors(tile).reduce((runningCollection, neighbor) => {
+                    return runningCollection.concat(moveTiles(neighbor, remaining));
+                }, []));
+            }
+            
+            return [];
+        };
+
         let startTile = this.getTile(startx, starty);
 
-        return this.moveTiles(startTile, (maxMove + startTile.moveCost));
+        return this.dedupe(moveTiles(startTile, maxMove));
         
-    }
-
-    moveTiles(tile, move) {
-        let remaining = move - tile.cost;
-        
-        if (tile.canMoveTo() && remaining >= 0) {
-            return [tile].concat(this.getNeighbors(tile).reduce((runningCollection, neighbor) => {
-                return runningCollection.concat(this.moveTiles(neighbor, remaining));
-            }, []));
-        }
-        
-        return [];
     }
 
     getAttackTiles(startx, starty, maxMove, attackRange) {
 
-        let moveTiles = this.getMoveTiles(startx, starty, maxMove);
+        const attackTiles = (tile, range) => {
+            if (range >= attackRange[0] && range <= attackRange[1]) {
+                result.push(tile);
+            }
+            if (range < attackRange[1]) {
+                this.getNeighbors(tile).forEach((neighbor) => {attackTiles(neighbor, (range + 1))});
+            }
+        };
 
-        //return tiles that the unit can attack.
+        let moveTiles = this.getMoveTiles(startx, starty, maxMove);
+        let result = [];
+
+        moveTiles.forEach((tile) => {
+            attackTiles(tile, 0);
+        });
+
+        return this.dedupe(result);
     }
 
     getNeighbors(centerTile) {
@@ -50,19 +67,24 @@ export class Grid {
         neighbors.push(this.getTile(centerTile.x , centerTile.y - 1));
         neighbors.push(this.getTile(centerTile.x, centerTile.y + 1));
 
-        return neighbors.filter( tile => !isNull(tile) );
+        return neighbors.filter( tile => tile !== null );
+    }
+
+    dedupe(array) {
+        return array.filter((elem, index, self) => self.findIndex(
+            (t) => {return (t.x === elem.x && t.y === elem.y)}) === index);
     }
 }
 
 export class Tile {
-    constructor (config) {
-        this.x = config.x;
-        this.y = config.y;
+    constructor (x, y, config) {
+        this.x = x;
+        this.y = y;
         this.unit = config.unit;
         this.moveCost = config.moveCost;
     }
 
     canMoveTo() {
-        return isNull(this.unit) && this.moveCost > 0;
+        return this.unit === null && this.moveCost > 0;
     }
 }

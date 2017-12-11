@@ -25,7 +25,7 @@ export default {
 
 		newHandler: function() {
 			//Setup New Game
-			this.$store.commit({type: "setGlobalState", payload: "Game State"});
+			this.$store.commit("setGlobalState", "Game State");
 		},
 
 		settingsHandler: function() {

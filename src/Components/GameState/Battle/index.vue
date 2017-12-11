@@ -4,7 +4,7 @@
         <!--Background-->
 
         <div id="Grid" :style="gridPosition">
-            <Tile v-for="(tile, index) in tiles" :key="index" :tile="tile" />
+            <Tile v-for="(tile, index) in $store.state.grid.flatTiles" :key="index" :tile="tile" />
         </div>
 
         <!--HUD-->
@@ -20,11 +20,6 @@
 import Tile from "./Tile";
 export default {
     name: 'Battle',
-    data: function () {
-        return {
-            tiles: [{x:0, y:0},{x:1, y:0},{x:2, y:0},{x:0, y:1},{x:1, y:1},{x:2, y:1},{x:0, y:2},{x:1, y:2},{x:2, y:2}]
-        }
-    },
     computed: {
         gridPosition: function () {
             return {
