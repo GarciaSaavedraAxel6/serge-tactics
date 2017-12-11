@@ -11,7 +11,7 @@ Title Screen __Skeleton Completed__
 Loading Screen `Not Started`
 Game __Skeleton Completed__
     Story Scene __Skeleton Completed__
-        Animation
+        Animation 
         Text
     World Map
     In Battle
@@ -60,3 +60,10 @@ Level
     Unit List
     Map Data
     Grid
+
+
+Animations
+    Ss5 to JSON? https://github.com/SpriteStudio/Ss5ConverterToSSAJSON/wiki
+    http://creature.kestrelmoon.com/ $99 - $199
+    https://marionettestudio.com $9/month - $25/month
+    http://esotericsoftware.com/ $69 - $299
