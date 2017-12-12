@@ -3,7 +3,7 @@ export class Grid {
         this.flatTiles = [];
         this.tiles = twoDArray.map((row, y) => {
             return row.map((tile, x) => {
-                let newTile = new Tile(x, y, tile);
+                let newTile = new Tile(x, y, tile, this);
                 this.flatTiles.push(newTile);
                 return newTile;
             });
@@ -77,14 +77,31 @@ export class Grid {
 }
 
 export class Tile {
-    constructor (x, y, config) {
+    constructor (x, y, config, grid) {
         this.x = x;
         this.y = y;
         this.unit = config.unit;
         this.moveCost = config.moveCost;
+        this.grid = grid;
+
+        if (this.unit) {
+            this.unit.setTile(this);
+        }    
     }
 
     canMoveTo() {
         return this.unit === null && this.moveCost > 0;
+    }
+
+    getMoveTiles(maxMove) {
+        return this.grid.getMoveTiles(this.x, this.y, maxMove);
+    }
+
+    getAttackTiles(maxMove, attackRange) {
+        return this.grid.getAttackTiles(this.x, this.y, maxMove, attackRange);
+    }
+
+    getNeighbors() {
+        return this.grid.getNeighbors(this);
     }
 }

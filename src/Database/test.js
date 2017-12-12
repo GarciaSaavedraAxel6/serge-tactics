@@ -59,7 +59,7 @@ export const test = [
             moveCost: 1
         },
         {
-            unit: null,
+            unit: new Unit(2),
             moveCost: 1
         },
         {
@@ -91,7 +91,7 @@ export const test = [
     ],
     [
         {
-            unit: null,
+            unit: new Unit(1),
             moveCost: 1
         },
         {

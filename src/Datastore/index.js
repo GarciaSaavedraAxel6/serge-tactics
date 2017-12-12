@@ -11,7 +11,11 @@ export default new Vuex.Store({
 	state: {
 		globalState: "Pre Menu",
 		tileSize: 50,
-		grid: new Grid(test)
+		grid: new Grid(test),
+		selectedUnit: null,
+		battlePhase: "Player Phase",
+		moveTiles: null,
+		attackTiles: null
 	},
 	mutations: {
 		setGlobalState (state, payload) {
@@ -22,6 +26,14 @@ export default new Vuex.Store({
 			if (newSize > 10 && newSize < 150 && !isNaN(newSize)) {
 				state.tileSize = newSize;
 			}
+		},
+		setBattleState(state, payload) {
+			state.battleState = payload;
+		},
+		setSelectedUnit(state, payload) {
+			state.selectedUnit = payload;
+			state.moveTiles = payload.getMoveTiles();
+			state.attackTiles = payload.getAttackTiles();
 		}
 	}
 });

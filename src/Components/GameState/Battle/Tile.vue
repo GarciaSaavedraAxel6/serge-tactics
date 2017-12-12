@@ -1,9 +1,10 @@
 <template>
-	<div class="tile" :style="sizeAndPosition">
+	<div class="tile" :style="sizeAndPosition" @click="tileClickHandler">
 		<!--background-->
 		<!--object-->
-		<div class="unit" v-if="tile.unit !== null">Hiya</div>
+		<div class="unit" v-if="tile.unit !== null"><img src="../../../assets/UI/notification_icon.png" /></div>
 		<!--coloring-->
+		<div class="coloring" v-if="isAttackTile || isMoveTile" :style="coloring"></div>
 		<!--arrow-->
 	</div>
 </template>
@@ -27,6 +28,40 @@ export default {
 				left: `${this.$store.state.tileSize * this.tile.x}px`,
 				top: `${this.$store.state.tileSize * this.tile.y}px`,
 			}
+		},
+		coloring: function () {
+			if (this.isMoveTile) {
+				return {backgroundColor: "blue"};
+			}
+			if (this.isAttackTile) {
+				return {backgroundColor: "red"};
+			}
+			
+			return {};
+		},
+		isMoveTile: function () {
+			if (this.$store.state.moveTiles){
+				return this.$store.state.moveTiles.indexOf(this.tile) > -1;
+			}
+
+			return false;
+		},
+		isAttackTile: function () {
+			if (this.$store.state.attackTiles) {
+				return this.$store.state.attackTiles.indexOf(this.tile) > -1;
+			}
+
+			return false;
+		},
+	},
+	methods: {
+		tileClickHandler: function (event) {
+			if (this.$store.state.battlePhase === "Player Phase") {
+				if (this.tile.unit) {
+					this.$store.commit("setBattleState", "unitMovePhase");
+					this.$store.commit("setSelectedUnit", this.tile.unit);
+				}
+			}
 		}
 	}
 }
@@ -42,6 +77,16 @@ export default {
 	.unit {
 		height: 100%;
 		width: 100%;
-		color: #00B;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	.coloring {
+		height: 100%;
+		width: 100%;
+		opacity: 0.6;
+		position: absolute;
+		top: 0;
+		left: 0;
 	}
 </style>

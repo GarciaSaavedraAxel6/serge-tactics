@@ -4,7 +4,10 @@
         <!--Background-->
 
         <div id="Grid" :style="gridPosition">
-            <Tile v-for="(tile, index) in $store.state.grid.flatTiles" :key="index" :tile="tile" />
+            <Tile 
+                v-for="(tile, index) in $store.state.grid.flatTiles" 
+                :key="index" :tile="tile" 
+            />
         </div>
 
         <!--HUD-->

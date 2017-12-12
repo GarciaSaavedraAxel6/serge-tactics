@@ -11,6 +11,7 @@ export class Unit {
         this.hp = 10;
         this.level = 1;
         this.experience = 0;
+        this.range = [1, 2];
 
         //description
         this.name = "Test";
@@ -22,10 +23,33 @@ export class Unit {
         this.bust = "../assets/test";
         this.portrait = "../assets/test";
         this.sprite = "../assets/test"
+
+        //programming stuffs
+        this.tile = null;
     }
 
     levelUp() {
         this.level++;
         //some stat distribution algorithm
+    }
+
+    setTile(tile) {
+        this.tile = tile;
+    }
+
+    getMoveTiles() {
+        if (this.tile) {
+            return this.tile.getMoveTiles(this.move);
+        }
+        
+        return null;
+    }
+
+    getAttackTiles() {
+        if (this.tile) {
+            return this.tile.getAttackTiles(this.move, this.range);
+        }
+        
+        return null;
     }
 }
