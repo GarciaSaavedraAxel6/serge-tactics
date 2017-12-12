@@ -1,7 +1,7 @@
 export class Unit {
-    constructor (move) {
+    constructor (config) {
         //stats
-        this.move = move;
+        this.move = config.move;
         this.attack = 10;
         this.defense = 10;
         this.resistance = 10;
@@ -41,7 +41,7 @@ export class Unit {
         if (this.tile) {
             return this.tile.getMoveTiles(this.move);
         }
-        
+
         return null;
     }
 
@@ -49,7 +49,7 @@ export class Unit {
         if (this.tile) {
             return this.tile.getAttackTiles(this.move, this.range);
         }
-        
+
         return null;
     }
 }

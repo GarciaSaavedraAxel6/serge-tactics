@@ -1,5 +1,3 @@
-import { Unit } from "../Utilities/Unit";
-
 export const test = [
     [
         {
@@ -7,7 +5,7 @@ export const test = [
             moveCost: 1
         },
         {
-            unit: new Unit(2),
+            unit: { move: 2 },
             moveCost: 1
         },
         {
@@ -59,7 +57,7 @@ export const test = [
             moveCost: 1
         },
         {
-            unit: new Unit(2),
+            unit: { move: 3 },
             moveCost: 1
         },
         {
@@ -91,7 +89,7 @@ export const test = [
     ],
     [
         {
-            unit: new Unit(1),
+            unit: { move: 1 },
             moveCost: 1
         },
         {

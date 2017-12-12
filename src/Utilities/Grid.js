@@ -1,3 +1,5 @@
+import { Unit } from "./Unit";
+
 export class Grid {
     constructor (twoDArray) {
         this.flatTiles = [];
@@ -80,13 +82,17 @@ export class Tile {
     constructor (x, y, config, grid) {
         this.x = x;
         this.y = y;
-        this.unit = config.unit;
         this.moveCost = config.moveCost;
         this.grid = grid;
 
-        if (this.unit) {
+        //set up unit
+        if (config.unit) {
+            this.unit = new Unit(config.unit);
             this.unit.setTile(this);
-        }    
+        }
+        else {
+            this.unit = null;
+        }
     }
 
     canMoveTo() {
