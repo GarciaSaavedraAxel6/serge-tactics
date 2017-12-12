@@ -27,13 +27,29 @@ export default new Vuex.Store({
 				state.tileSize = newSize;
 			}
 		},
-		setBattleState(state, payload) {
-			state.battleState = payload;
+		setBattlePhase(state, payload) {
+			state.battlePhase = payload;
 		},
 		setSelectedUnit(state, payload) {
-			state.selectedUnit = payload;
-			state.moveTiles = payload.getMoveTiles();
-			state.attackTiles = payload.getAttackTiles();
+			if (payload) {
+				state.selectedUnit = payload;
+				state.moveTiles = payload.getMoveTiles();
+				state.attackTiles = payload.getAttackTiles();
+			}
+			else {
+				state.selectedUnit = null;
+				state.moveTiles = null;
+				state.attackTiles = null;
+			}
+		},
+		moveUnit(state, payload) {
+			let unit = state.selectedUnit;
+			let oldTile = unit.tile;
+			let newTile = payload;
+
+			oldTile.unit = null;
+			newTile.unit = unit;
+			unit.setTile(newTile);
 		}
 	}
 });

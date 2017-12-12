@@ -56,11 +56,24 @@ export default {
 	},
 	methods: {
 		tileClickHandler: function (event) {
-			if (this.$store.state.battlePhase === "Player Phase") {
+			console.log("clicked");
+			let phase = this.$store.state.battlePhase;
+			console.log('phase: ', phase);
+			if (phase === "Player Phase") {
 				if (this.tile.unit) {
-					this.$store.commit("setBattleState", "unitMovePhase");
+					this.$store.commit("setBattlePhase", "Unit Move Phase");
 					this.$store.commit("setSelectedUnit", this.tile.unit);
 				}
+				return;
+			}
+
+			if (phase === "Unit Move Phase"); {
+				if (this.isMoveTile) {
+					this.$store.commit("moveUnit", this.tile);
+					this.$store.commit("setBattlePhase", "Player Phase");
+					this.$store.commit("setSelectedUnit", null);
+				}
+				return;
 			}
 		}
 	}
