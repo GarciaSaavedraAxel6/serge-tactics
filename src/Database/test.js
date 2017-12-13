@@ -5,7 +5,10 @@ export const test = [
             moveCost: 1
         },
         {
-            unit: { move: 2 },
+            unit: {
+                name: "Serge",
+                army: "player"
+            },
             moveCost: 1
         },
         {
@@ -57,7 +60,10 @@ export const test = [
             moveCost: 1
         },
         {
-            unit: { move: 3 },
+            unit: {
+                name: "Mia",
+                army: "player"
+            },
             moveCost: 1
         },
         {
@@ -89,7 +95,10 @@ export const test = [
     ],
     [
         {
-            unit: { move: 1 },
+            unit: {
+                name: "Jim",
+                army: "enemy"
+            },
             moveCost: 1
         },
         {

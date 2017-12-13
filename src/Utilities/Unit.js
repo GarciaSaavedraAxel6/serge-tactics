@@ -2,30 +2,29 @@ export class Unit {
     constructor (config) {
         //stats
         this.move = config.move;
-        this.attack = 10;
-        this.defense = 10;
-        this.resistance = 10;
-        this.speed = 10;
-        this.skill = 10;
-        this.luck = 10;
-        this.hp = 10;
+        this.attack = config.attack;
+        this.defense = config.defense;
+        this.resistance = config.resistance;
+        this.speed = config.speed;
+        this.skill = config.skill;
+        this.luck = config.luck;
+        this.hp = config.hp;
         this.level = 1;
         this.experience = 0;
         this.range = [1, 2];
 
         //description
-        this.name = "Test";
-        this.class = "test";
-        this.description = "A test unit.";
-        this.title = "Tester of Tests";
+        this.name = config.name;
+        this.class = config.class;
+        this.description = config.description;
+        this.title = config.title;
 
         //images
-        this.bust = "../assets/test";
-        this.portrait = "../assets/test";
-        this.sprite = "../assets/test"
+        this.imageDirectory = config.imageDirectory;
 
         //programming stuffs
-        this.tile = null;
+        this.tile = config.tile;
+        this.army = config.army;
     }
 
     levelUp() {

@@ -1,4 +1,5 @@
 import { Unit } from "./Unit";
+import { units } from "../Database/units";
 
 export class Grid {
     constructor (twoDArray) {
@@ -87,8 +88,7 @@ export class Tile {
 
         //set up unit
         if (config.unit) {
-            this.unit = new Unit(config.unit);
-            this.unit.setTile(this);
+            this.unit = new Unit(Object.assign(units[config.unit.name], {tile: this, army: config.unit.army}));
         }
         else {
             this.unit = null;

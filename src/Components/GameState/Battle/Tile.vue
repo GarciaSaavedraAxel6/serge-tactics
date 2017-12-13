@@ -56,9 +56,7 @@ export default {
 	},
 	methods: {
 		tileClickHandler: function (event) {
-			console.log("clicked");
 			let phase = this.$store.state.battlePhase;
-			console.log('phase: ', phase);
 			if (phase === "Player Phase") {
 				if (this.tile.unit) {
 					this.$store.commit("setBattlePhase", "Unit Move Phase");
