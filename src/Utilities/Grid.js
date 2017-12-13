@@ -88,7 +88,11 @@ export class Tile {
 
         //set up unit
         if (config.unit) {
-            this.unit = new Unit(Object.assign(units[config.unit.name], {tile: this, army: config.unit.army}));
+            this.unit = new Unit(Object.assign(units[config.unit.name], 
+                {
+                    tile: this, 
+                    army: config.unit.army,
+                }));
         }
         else {
             this.unit = null;

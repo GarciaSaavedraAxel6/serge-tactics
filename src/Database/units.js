@@ -3,7 +3,7 @@ export const units = {
         name: "Serge",
         class: "Mercenary",
         description: "Serge is cool.",
-        tile: "Creator",
+        title: "Creator",
         imageDirectory: "./assets/units/Serge",
         move: 2,
         attack: 10,
@@ -13,12 +13,13 @@ export const units = {
         skill: 10,
         luck: 10,
         hp: 10,
+        weapon: "Sword"
     },
     Mia: {
         name: "Mia",
         class: "Mage",
         description: "Mia is cool.",
-        tile: "Creator's Wife",
+        title: "Creator's Wife",
         imageDirectory: "./assets/units/Mia",
         move: 3,
         attack: 10,
@@ -28,12 +29,13 @@ export const units = {
         skill: 10,
         luck: 10,
         hp: 10,
+        weapon: "Tome"
     },
     Jim: {
         name: "Jim",
         class: "Knight",
         description: "Jim is cool.",
-        tile: "Bad Guy",
+        title: "Bad Guy",
         imageDirectory: "./assets/units/Jim",
         move: 1,
         attack: 10,
@@ -43,5 +45,6 @@ export const units = {
         skill: 10,
         luck: 10,
         hp: 15,
+        weapon: "Bow"
     },
 };

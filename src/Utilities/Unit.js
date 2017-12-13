@@ -1,3 +1,5 @@
+import { weapons } from "../Database/weapons";
+
 export class Unit {
     constructor (config) {
         //stats
@@ -11,7 +13,7 @@ export class Unit {
         this.hp = config.hp;
         this.level = 1;
         this.experience = 0;
-        this.range = [1, 2];
+        this.range = weapons[config.weapon].range;
 
         //description
         this.name = config.name;
@@ -25,6 +27,10 @@ export class Unit {
         //programming stuffs
         this.tile = config.tile;
         this.army = config.army;
+
+        //inventory
+        this.inventory = [];
+        this.weapon = weapons[config.weapon];
     }
 
     levelUp() {
