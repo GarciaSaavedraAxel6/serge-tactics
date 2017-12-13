@@ -15,14 +15,16 @@ export default new Vuex.Store({
 		selectedUnit: null,
 		battlePhase: "Player Phase",
 		moveTiles: null,
-		attackTiles: null
+		attackTiles: null,
+		menuOpen: false,
+		currentMenu: "Unit Actions"
 	},
 	mutations: {
 		setGlobalState (state, payload) {
 			state.globalState = payload;
 		},
 		changeTileSize (state, payload) {
-			let newSize = payload.amount + state.tileSize;
+			let newSize = payload + state.tileSize;
 			if (newSize > 10 && newSize < 150 && !isNaN(newSize)) {
 				state.tileSize = newSize;
 			}

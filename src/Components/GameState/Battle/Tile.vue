@@ -2,14 +2,15 @@
 	<div class="tile" :style="sizeAndPosition" @click="tileClickHandler">
 		<!--background-->
 		<!--object-->
-		<div class="unit" v-if="tile.unit !== null"><img src="../../../assets/UI/notification_icon.png" /></div>
-		<!--coloring-->
+		<div class="fit" v-if="tile.unit !== null"><img class="fit" src="../../../assets/UI/notification_icon.png" /></div>
 		<div class="coloring" v-if="isAttackTile || isMoveTile" :style="coloring"></div>
 		<!--arrow-->
 	</div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
 	name: 'tile',
 	data: function () {
@@ -23,10 +24,10 @@ export default {
 	computed: {
 		sizeAndPosition: function() {
 			return {
-				height: `${this.$store.state.tileSize}px`,
-				width: `${this.$store.state.tileSize}px`,
-				left: `${this.$store.state.tileSize * this.tile.x}px`,
-				top: `${this.$store.state.tileSize * this.tile.y}px`,
+				height: `${this.tileSize}px`,
+				width: `${this.tileSize}px`,
+				left: `${this.tileSize * this.tile.x}px`,
+				top: `${this.tileSize * this.tile.y}px`,
 			}
 		},
 		coloring: function () {
@@ -40,38 +41,53 @@ export default {
 			return {};
 		},
 		isMoveTile: function () {
-			if (this.$store.state.moveTiles){
-				return this.$store.state.moveTiles.indexOf(this.tile) > -1;
+			if (this.moveTiles){
+				return this.moveTiles.indexOf(this.tile) > -1;
 			}
 
 			return false;
 		},
 		isAttackTile: function () {
-			if (this.$store.state.attackTiles) {
-				return this.$store.state.attackTiles.indexOf(this.tile) > -1;
+			if (this.attackTiles) {
+				return this.attackTiles.indexOf(this.tile) > -1;
 			}
 
 			return false;
 		},
+		commit: function () {
+			return this.$store.commit;
+		},
+		...mapState({
+			battlePhase: 'battlePhase',
+			tileSize: 'tileSize',
+			moveTiles: 'moveTiles',
+			attackTiles: 'attackTiles'
+		})
 	},
 	methods: {
 		tileClickHandler: function (event) {
-			let phase = this.$store.state.battlePhase;
-			if (phase === "Player Phase") {
-				if (this.tile.unit) {
-					this.$store.commit("setBattlePhase", "Unit Move Phase");
-					this.$store.commit("setSelectedUnit", this.tile.unit);
+			
+			switch (this.battlePhase) {
+				case "Player Phase": {
+					if (this.tile.unit) {
+						this.commit("setBattlePhase", "Unit Move Phase");
+						this.commit("setSelectedUnit", this.tile.unit);
+					}
+					break;
 				}
-				return;
-			}
+				case "Unit Move Phase": {
+					if (this.isMoveTile) {
+						this.commit("moveUnit", this.tile);
+						this.commit("setBattlePhase", "Player Phase");
+						this.commit("setSelectedUnit", null);
+					}
+					break;
+				}
 
-			if (phase === "Unit Move Phase"); {
-				if (this.isMoveTile) {
-					this.$store.commit("moveUnit", this.tile);
-					this.$store.commit("setBattlePhase", "Player Phase");
-					this.$store.commit("setSelectedUnit", null);
+				default: {
+					break;
 				}
-				return;
+
 			}
 		}
 	}
@@ -79,25 +95,20 @@ export default {
 </script>
 
 <style scoped>
+	.fit {
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
 	.tile {
 		border: 1px solid #000;
 		position: absolute;
 		background-color: #060;
 		margin: 0px;
 	}
-	.unit {
-		height: 100%;
-		width: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
 	.coloring {
-		height: 100%;
-		width: 100%;
 		opacity: 0.6;
-		position: absolute;
-		top: 0;
-		left: 0;
 	}
 </style>

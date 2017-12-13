@@ -1,16 +1,19 @@
 <template>
 	<div id="app">
-		<PreMenu v-if="this.$store.state.globalState === 'Pre Menu'" />
-		<TitleScreen v-if="this.$store.state.globalState === 'Title Screen'" />
-		<GameState v-if="this.$store.state.globalState ==='Game State'" />
+		<PreMenu v-if="this.globalState === 'Pre Menu'" />
+		<TitleScreen v-if="this.globalState === 'Title Screen'" />
+		<GameState v-if="this.globalState ==='Game State'" />
+		<MenuState />
 		
 	</div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import PreMenu from "./Components/PreMenu";
 import TitleScreen from "./Components/TitleScreen";
 import GameState from "./Components/GameState";
+import MenuState from "./Components/MenuState";
 
 export default {
 	name: 'app',
@@ -20,8 +23,12 @@ export default {
 	components: {
 		PreMenu,
 		TitleScreen,
-		GameState
-	}
+		GameState,
+		MenuState
+	},
+	computed: mapState({
+		globalState: "globalState"
+	})
 }
 </script>
 

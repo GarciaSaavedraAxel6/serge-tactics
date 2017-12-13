@@ -67,3 +67,7 @@ Animations
     http://creature.kestrelmoon.com/ $99 - $199
     https://marionettestudio.com $9/month - $25/month
     http://esotericsoftware.com/ $69 - $299
+
+TODO:
+    Work on Weapon and Skill classes.
+    Work on wiring up a menu.
