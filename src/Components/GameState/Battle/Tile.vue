@@ -3,7 +3,7 @@
 		<!--background-->
 		<!--object-->
 		<div class="fit" v-if="tile.unit !== null"><img class="fit" src="../../../assets/UI/notification_icon.png" /></div>
-		<div class="coloring" v-if="isAttackTile || isMoveTile" :style="coloring"></div>
+		<div class="coloring fit" v-if="isAttackTile || isMoveTile" :style="coloring"></div>
 		<!--arrow-->
 	</div>
 </template>
@@ -69,17 +69,16 @@ export default {
 			
 			switch (this.battlePhase) {
 				case "Player Phase": {
-					if (this.tile.unit) {
-						this.commit("setBattlePhase", "Unit Move Phase");
+					if (this.tile.unit && this.tile.unit.canMove) {
 						this.commit("setSelectedUnit", this.tile.unit);
+						this.commit("setBattlePhase", "Unit Move Phase");
 					}
 					break;
 				}
 				case "Unit Move Phase": {
 					if (this.isMoveTile) {
 						this.commit("moveUnit", this.tile);
-						this.commit("setBattlePhase", "Player Phase");
-						this.commit("setSelectedUnit", null);
+						this.commit("openMenu", "Unit Actions");
 					}
 					break;
 				}

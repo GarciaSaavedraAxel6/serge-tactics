@@ -6,6 +6,7 @@
 
 <script>
 import { mapState } from "vuex";
+import UnitActions from "./UnitActions";
 
 export default {
 	name: "MenuState",

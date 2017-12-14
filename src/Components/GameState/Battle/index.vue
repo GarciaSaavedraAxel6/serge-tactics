@@ -26,8 +26,8 @@ export default {
     computed: {
         gridPosition: function () {
             return {
-                top: `100px`,
-                left: `100px`
+                top: `${this.$store.state.gridPosition.top}px`,
+                left: `${this.$store.state.gridPosition.left}px`
             }
         }
     },

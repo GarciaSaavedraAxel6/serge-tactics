@@ -27,6 +27,7 @@ export class Unit {
         //programming stuffs
         this.tile = config.tile;
         this.army = config.army;
+        this.canMove = true;
 
         //inventory
         this.inventory = [];

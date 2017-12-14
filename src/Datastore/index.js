@@ -11,13 +11,14 @@ export default new Vuex.Store({
 	state: {
 		globalState: "Pre Menu",
 		tileSize: 50,
+		gridPosition: {top: 100, left: 100},
 		grid: new Grid(test),
 		selectedUnit: null,
 		battlePhase: "Player Phase",
 		moveTiles: null,
 		attackTiles: null,
 		menuOpen: false,
-		currentMenu: "Unit Actions"
+		currentMenu: null
 	},
 	mutations: {
 		setGlobalState (state, payload) {
@@ -52,6 +53,14 @@ export default new Vuex.Store({
 			oldTile.unit = null;
 			newTile.unit = unit;
 			unit.setTile(newTile);
+		},
+		openMenu(state, payload) {
+			state.menuOpen = true;
+			state.currentMenu = payload;
+		},
+		closeMenu(state, payload) {
+			state.menuOpen = false;
+			state.currentMenu = null;
 		}
 	}
 });
