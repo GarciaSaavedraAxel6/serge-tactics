@@ -34,6 +34,7 @@ export default {
 			this.selectedUnit.canMove = false;
 			this.commit("closeMenu");
 			this.commit("setSelectedUnit", null);
+			this.commit("setBattlePhase", "Player Phase")
 		}
 	}
 }
