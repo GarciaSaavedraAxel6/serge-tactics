@@ -1,30 +1,18 @@
 export function BattleCalculation(Attacker, Defender) {
-    let AttackerAttackSpeed = Attacker.speed - clamp((Attacker.weapon.weight - Attacker.strength), 0, 999);
-    let DefenderAttackSpeed = Defender.speed - clamp((Defender.weapon.weight - Defender.strength), 0, 999);
-    let doubleAttack = doubleAttack(AttackerAttackSpeed, DefenderAttackSpeed);
-    let secondAttacker = doubleAttack === "Attacker" ? Attacker : Defender;
-    let secondDefender = doubleAttack === "Defender" ? Attacker : Defender;
+    const AttackerAttackSpeed = Attacker.speed - clamp((Attacker.weapon.weight - Attacker.strength), 0, 999);
+    const DefenderAttackSpeed = Defender.speed - clamp((Defender.weapon.weight - Defender.strength), 0, 999);
+    const doubleAttack = AttackerAttackSpeed - DefenderAttackSpeed;
+    const secondAttacker = doubleAttack >= 4 ? Attacker : doubleAttack <= -4 ? Defender : null;
+    const secondDefender = doubleAttack >= 4 ? Defender : doubleAttack <= -4 ? Attacker : null;
 
     let BattleResults = [];
     //First round
-    BattleResults.push({
-        attacker: Attacker,
-        defender: Defender,
-        result: AttackCalculation(Attacker, Defender)
-    });
+    BattleResults.push(AttackCalculation(Attacker, Defender));
     //Second round
-    BattleResults.push({
-        attacker: Defender,
-        defender: Attacker,
-        result: AttackCalculation(Defender, Attacker)
-    });
+    BattleResults.push(AttackCalculation(Defender, Attacker));
     //Third round
-    if (doubleAttack) {
-        BattleResults.push({
-            attacker: secondAttacker,
-            defender: secondDefender,
-            result: AttackCalculation(secondAttacker, secondDefender)
-        });
+    if (secondAttacker && secondDefender) {
+        BattleResults.push(AttackCalculation(secondAttacker, secondDefender));
     }
 
     return BattleResults;
@@ -55,22 +43,11 @@ function AttackCalculation (Attacker, Defender) {
         CritChance,
         didHit,
         didCrit,
-        Damage
+        Damage,
+        Attacker,
+        Defender
     };
 
-}
-
-function doubleAttack (attackerAS, defenderAS) {
-    let difference = attackerAS - defenderAS;
-
-    if (difference >= 4) {
-        return "Attacker";
-    }
-    if (difference <= 4) {
-        return "Defender";
-    }
-
-    return null;
 }
 
 function clamp (number, min, max) {
