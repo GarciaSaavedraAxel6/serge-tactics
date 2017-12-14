@@ -3,7 +3,7 @@
 		<PreMenu v-if="this.globalState === 'Pre Menu'" />
 		<TitleScreen v-if="this.globalState === 'Title Screen'" />
 		<GameState v-if="this.globalState ==='Game State'" />
-		<MenuState />
+		<MenuState v-if="this.menuOpen" />
 		
 	</div>
 </template>
@@ -27,7 +27,8 @@ export default {
 		MenuState
 	},
 	computed: mapState({
-		globalState: "globalState"
+		globalState: "globalState",
+		menuOpen: "menuOpen"
 	})
 }
 </script>
