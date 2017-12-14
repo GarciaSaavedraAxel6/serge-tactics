@@ -8,11 +8,16 @@ export function BattleCalculation(Attacker, Defender) {
     let BattleResults = [];
     //First round
     BattleResults.push(AttackCalculation(Attacker, Defender));
+    //Execute Result
+
     //Second round
     BattleResults.push(AttackCalculation(Defender, Attacker));
+    //Execute Result
+
     //Third round
     if (secondAttacker && secondDefender) {
         BattleResults.push(AttackCalculation(secondAttacker, secondDefender));
+        //Execute Result
     }
 
     return BattleResults;
@@ -47,6 +52,9 @@ function AttackCalculation (Attacker, Defender) {
         Attacker,
         Defender
     };
+}
+
+function ExecuteResult (result) {
 
 }
 
