@@ -69,5 +69,5 @@ Animations
     http://esotericsoftware.com/ $69 - $299
 
 TODO:
-    Work on Weapon and Skill classes.
+    Work on Skill classe.
     Work on wiring up a menu.
